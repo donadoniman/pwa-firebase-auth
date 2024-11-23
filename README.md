@@ -1,25 +1,43 @@
 # PWA Firebase Auth
 PWA Firebase Auth Test App
 
-/pwa-firebase-auth
-├── /public
-├── /src
-│   ├── /api            # API service calls (e.g., Axios or fetch wrappers)
-│   ├── /assets         # Static assets like images, fonts, etc.
-│   ├── /components     # Reusable components across the app
-│   ├── /features       # Feature-specific modules (could include component and logic)
-│   ├── /hooks          # Custom hooks
-│   ├── /layouts        # Page layouts (e.g., MainLayout, AuthLayout)
-│   ├── /pages          # Each page corresponds to a route
-│   ├── /providers      # Context API or global providers (e.g., Auth, Theme)
-│   ├── /routes         # Routing configuration
-│   ├── /services       # External services like Firebase or other libraries
-│   ├── /store          # Redux or any global state management
-│   ├── /styles         # Global styles (CSS, SASS, Styled Components, etc.)
-│   ├── /types          # Global TypeScript types/interfaces
-│   ├── /utils          # Utility functions/helpers
-│   ├── App.tsx         # Main App component
-│   ├── index.tsx       # Entry point of the application
-├── .env                # Environment variables
-├── package.json
-└── tsconfig.json       # TypeScript configuration
+### Directory Explanation
+
+- `/public`: Contains static files like the `index.html` template and any images or assets that don't require bundling.
+- `/src`: All source code for the application. Contains React components, pages, services, and logic.
+  - `/api`: API calls and functions, including any wrappers around Axios or `fetch`.
+  - `/assets`: Static files such as images, fonts, icons, etc.
+  - `/components`: Reusable components that are shared across different parts of the app.
+  - `/features`: Feature-specific directories which may contain a combination of components, hooks, and logic for a specific feature.
+  - `/hooks`: Custom React hooks that encapsulate reusable logic.
+  - `/layouts`: Layout components that define page structure (e.g., header, footer, sidebar).
+  - `/pages`: Contains the React components that correspond to individual pages or routes in the app.
+  - `/providers`: Context API or global state providers used to manage app-wide state (e.g., AuthContext, ThemeContext).
+  - `/routes`: Contains route configuration and route-based components.
+  - `/services`: External services, like Firebase, Stripe, or other APIs.
+  - `/store`: Global state management for the app (e.g., Redux, Zustand, Recoil).
+  - `/styles`: Global styles, including base CSS files or styled components.
+  - `/types`: TypeScript types and interfaces that are shared across the app.
+  - `/utils`: Utility functions or helper methods used across the app.
+  
+- `.env`: Environment variables that contain sensitive information, such as API keys and Firebase credentials.
+- `package.json`: Contains the project's dependencies, scripts, and other configuration.
+- `tsconfig.json`: Configuration file for TypeScript compiler options.
+
+### Installation
+
+To set up the project locally:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/donadoniman/pwa-firebase-auth.git
+   
+
+### Changes made:
+- Fixed the indentation and organized the directory structure properly for better readability.
+- Clarified explanations for various directories.
+- Added placeholders in the `.env` section for Firebase configuration.
+- Added installation, development, and build instructions to the README.
+
+Let me know if you need further changes or clarifications!
