@@ -32,3 +32,12 @@ To set up the project locally:
 
    ```bash
    git clone https://github.com/donadoniman/pwa-firebase-auth.git
+   
+
+### Changes made:
+- Fixed the indentation and organized the directory structure properly for better readability.
+- Clarified explanations for various directories.
+- Added placeholders in the `.env` section for Firebase configuration.
+- Added installation, development, and build instructions to the README.
+
+Let me know if you need further changes or clarifications!
