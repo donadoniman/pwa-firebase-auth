@@ -32,7 +32,34 @@ To set up the project locally:
 
    ```bash
    git clone https://github.com/donadoniman/pwa-firebase-auth.git
-   
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd pwa-firebase-auth
+
+3. Install dependencies:
+
+    ```bash
+    npm install
+
+4. Create a .env file in the root directory and add your Firebase credentials:
+
+    ```bash
+    REACT_APP_FIREBASE_API_KEY=your-api-key
+    REACT_APP_FIREBASE_AUTH_DOMAIN=your-auth-domain
+    REACT_APP_FIREBASE_PROJECT_ID=your-project-id
+    REACT_APP_FIREBASE_STORAGE_BUCKET=your-storage-bucket
+    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
+    REACT_APP_FIREBASE_APP_ID=your-app-id
+    REACT_APP_FIREBASE_MEASUREMENT_ID=your-measurement-id
+
+5. Start the development server:
+
+    ```bash
+    npm start
+
+
 
 ### Changes made:
 - Fixed the indentation and organized the directory structure properly for better readability.
