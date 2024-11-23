@@ -1,5 +1,4 @@
-// providers/AuthProvider.tsx
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface AuthContextProps {
   isAuthenticated: boolean;
@@ -7,11 +6,16 @@ interface AuthContextProps {
   logout: () => void;
 }
 
+// Defining the children prop type
+interface AuthProviderProps {
+  children: ReactNode; // children can be any valid React child
+}
+
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const useAuth = () => useContext(AuthContext);
 
-export const AuthProvider: React.FC = ({ children }) => {
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const login = () => setIsAuthenticated(true);
