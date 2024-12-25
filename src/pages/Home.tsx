@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../services/firebase";
+import { auth } from "../utils/firebase";
 
 const Home = () => {
   useEffect(() => {
