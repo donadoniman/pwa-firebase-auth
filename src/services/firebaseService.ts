@@ -27,8 +27,6 @@ import {
   WhereFilterOp,
 } from "firebase/firestore";
 
-import { firestore } from "firebase-admin";
-
 // Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY as string,
@@ -77,16 +75,12 @@ export const firebaseAuth = {
     if (!auth) {
       throw new Error("Firebase Auth is not initialized.");
     }
-    const verifier = new RecaptchaVerifier(
-      auth,
-      recaptchaContainerId,
-      {
-        size: "invisible",
-        callback: (response: any) => {
-          console.log("reCAPTCHA solved:", response);
-        },
-      }
-    );
+    const verifier = new RecaptchaVerifier(auth, recaptchaContainerId, {
+      size: "invisible",
+      callback: (response: any) => {
+        console.log("reCAPTCHA solved:", response);
+      },
+    });
     verifier.render();
     return verifier;
   },
@@ -202,18 +196,33 @@ export const firebaseDB = {
   ): Promise<any[]> => {
     try {
       // Reference the parent document
-      const parentDocRef = firestore().collection(parentCollection).doc(parentDocId);
-  
-      // List all subcollections under the parent document
-      const collections = await parentDocRef.listCollections();
-  
-      // Fetch data from all subcollections
+      const parentDocRef = doc(db, parentCollection, parentDocId);
+
+      // Fetch the parent document to retrieve subcollection names
+      const parentDocSnapshot = await getDoc(parentDocRef);
+
+      if (!parentDocSnapshot.exists()) {
+        throw new Error(
+          `Parent document not found in ${parentCollection}/${parentDocId}`
+        );
+      }
+
+      // Dynamically retrieve subcollection names from a field in the parent document
+      const subCollectionNames: string[] =
+        parentDocSnapshot.data()?.subCollectionNames;
+
+      if (!subCollectionNames || subCollectionNames.length === 0) {
+        throw new Error("No subcollection names found in the parent document.");
+      }
+
+      // Fetch data from all subcollections dynamically
       const allSubCollections = await Promise.all(
-        collections.map(async (collectionRef) => {
-          // Get all documents in the subcollection
-          const querySnapshot = await collectionRef.get();
+        subCollectionNames.map(async (subCollectionName) => {
+          const subCollectionRef = collection(parentDocRef, subCollectionName);
+          const querySnapshot = await getDocs(subCollectionRef);
+
           return {
-            collectionName: collectionRef.id, // Subcollection name
+            collectionName: subCollectionName,
             data: querySnapshot.docs.map((doc) => ({
               id: doc.id, // Document ID
               ...doc.data(), // Document data
@@ -221,11 +230,11 @@ export const firebaseDB = {
           };
         })
       );
-  
+
       return allSubCollections;
     } catch (error) {
       console.error("Error fetching nested collections:", error);
       throw new Error("Failed to retrieve nested collections.");
     }
-  }
+  },
 };
