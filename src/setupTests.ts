@@ -12,6 +12,10 @@ import '@testing-library/jest-dom';
 import { TextDecoder, TextEncoder } from 'util';
 
 if (typeof global.TextEncoder === 'undefined') {
+  // @ts-expect-error -- TS 5.7+ made Uint8Array generic over its buffer
+  // type; Node's TextEncoder.encode() returns Uint8Array<ArrayBufferLike>
+  // where the DOM lib's TextEncoder type expects Uint8Array<ArrayBuffer>.
+  // Functionally identical at runtime.
   global.TextEncoder = TextEncoder;
 }
 if (typeof global.TextDecoder === 'undefined') {
