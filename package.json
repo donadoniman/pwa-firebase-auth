@@ -18,7 +18,7 @@
     "react-router-dom": "^7.0.1",
     "react-scripts": "5.0.1",
     "typescript": "^5.9.3",
-    "web-vitals": "^2.1.4",
+    "web-vitals": "^6.2.1",
     "workbox-background-sync": "^6.6.0",
     "workbox-broadcast-update": "^6.6.0",
     "workbox-cacheable-response": "^6.6.0",
