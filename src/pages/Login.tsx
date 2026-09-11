@@ -13,7 +13,10 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        navigate("/home");
+        // AppRoutes only ever defined "/", not "/home" -- this always
+        // navigated to a route that doesn't exist (no catch-all route
+        // either, so it silently rendered nothing).
+        navigate("/");
         console.log(user);
       })
       .catch((error) => {
