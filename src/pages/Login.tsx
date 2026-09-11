@@ -84,6 +84,11 @@ const Login = () => {
             Sign up
           </NavLink>
         </p>
+        <p className="mt-2 text-sm text-center text-gray-600">
+          <NavLink to="/login/phone" className="text-blue-600 hover:underline">
+            Sign in with phone instead
+          </NavLink>
+        </p>
       </section>
     </main>
   );
