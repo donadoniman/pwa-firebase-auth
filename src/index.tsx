@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import './index.css';
 import App from './App';
+import { AuthProvider } from './providers/AuthProvider';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
@@ -11,8 +12,14 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
+  // AuthProvider was never mounted anywhere -- useAuth() would throw for
+  // any component that tried to call it. It has to wrap App (not live
+  // inside it) so every route, including AppRoutes' own <BrowserRouter>,
+  // renders under a real hydrated session from the very first paint.
   <Provider store={store}>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </Provider>
 );
 
