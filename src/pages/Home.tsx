@@ -23,12 +23,12 @@ const Home = () => {
               You are successfully logged in{user?.email ? ` as ${user.email}` : ""}. Explore the app and get
               productive!
             </p>
-            <button
-              className="mt-6 px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md"
-              onClick={() => console.log("Start Exploring")}
+            <NavLink
+              to="/dashboard"
+              className="mt-6 inline-block px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md"
             >
               Start Exploring
-            </button>
+            </NavLink>
           </>
         ) : (
           <p className="mt-4 text-lg text-gray-600">
